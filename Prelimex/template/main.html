@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Student Grade Calculator</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="page-wrap">
+        <div class="container">
+            <h1>Student Grade Calculator</h1>
+
+            <!--checks for errors-->
+            {% if error %}
+              <div class="error">{{ error }}</div>
+            {% endif %}
+
+            <form method="post" class="form-grid">
+                <fieldset class="card">
+                    <legend>Prelim</legend>
+                    <label>Absences
+                        <input type="number" name="prelim_absences" value="{{ values.get('prelim_absences','') }}" required>
+                    </label>
+                    <label>Exam
+                        <input type="number" step="0.01" name="prelim_exam" value="{{ values.get('prelim_exam','') }}" required>
+                    </label>
+                    <label>Quizzes
+                        <input type="number" step="0.01" name="prelim_quizzes" value="{{ values.get('prelim_quizzes','') }}" required>
+                    </label>
+                    <label>Requirements
+                        <input type="number" step="0.01" name="prelim_requirements" value="{{ values.get('prelim_requirements','') }}" required>
+                    </label>
+                    <label>Recitation
+                        <input type="number" step="0.01" name="prelim_recitation" value="{{ values.get('prelim_recitation','') }}" required>
+                    </label>
+                </fieldset>
+
+                <fieldset class="card">
+                    <legend>Midterm</legend>
+                    <label>Absences
+                        <input type="number" name="mid_absences" value="{{ values.get('mid_absences','') }}" required>
+                    </label>
+                    <label>Exam
+                        <input type="number" step="0.01" name="mid_exam" value="{{ values.get('mid_exam','') }}" required>
+                    </label>
+                    <label>Quizzes
+                        <input type="number" step="0.01" name="mid_quizzes" value="{{ values.get('mid_quizzes','') }}" required>
+                    </label>
+                    <label>Requirements
+                        <input type="number" step="0.01" name="mid_requirements" value="{{ values.get('mid_requirements','') }}" required>
+                    </label>
+                    <label>Recitation
+                        <input type="number" step="0.01" name="mid_recitation" value="{{ values.get('mid_recitation','') }}" required>
+                    </label>
+                </fieldset>
+
+                <fieldset class="card">
+                    <legend>Final</legend>
+                    <label>Absences
+                        <input type="number" name="final_absences" value="{{ values.get('final_absences','') }}" required>
+                    </label>
+                    <label>Exam
+                        <input type="number" step="0.01" name="final_exam" value="{{ values.get('final_exam','') }}" required>
+                    </label>
+                    <label>Quizzes
+                        <input type="number" step="0.01" name="final_quizzes" value="{{ values.get('final_quizzes','') }}" required>
+                    </label>
+                    <label>Requirements
+                        <input type="number" step="0.01" name="final_requirements" value="{{ values.get('final_requirements','') }}" required>
+                    </label>
+                    <label>Recitation
+                        <input type="number" step="0.01" name="final_recitation" value="{{ values.get('final_recitation','') }}" required>
+                    </label>
+                </fieldset>
+
+                <div class="submit-wrap">
+                    <button type="submit" class="submit-btn">Calculate</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

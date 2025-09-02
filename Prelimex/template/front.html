@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Grade Results</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+      /* small local tweaks so it looks nice even if CSS not loaded yet */
+      .badge { display:inline-block; padding:6px 10px; border-radius:6px; color:#fff; font-weight:700; }
+      .pass { background:#28a745; }
+      .fail { background:#d9534f; }
+      .muted { color:#666; font-size:14px; }
+      .req { font-size:15px; margin-top:8px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Your Final Results</h1>
+
+        <div class="results-box">
+            <!-- Prelim -->
+            {% if prelim is none %}
+                <p><strong>Prelim:</strong> <span class="muted">{{ prelim_msg }}</span></p>
+            {% else %}
+                <p><strong>Prelim Grade:</strong> {{ prelim | round(2) }}</p>
+            {% endif %}
+
+            <!-- Midterm -->
+            {% if midterm is none %}
+                <p><strong>Midterm:</strong> <span class="muted">{{ midterm_msg }}</span></p>
+            {% else %}
+                <p><strong>Midterm Grade:</strong> {{ midterm | round(2) }}</p>
+            {% endif %}
+
+            <!-- Finals -->
+            {% if finals is none %}
+                <p><strong>Final:</strong> <span class="muted">{{ final_msg }}</span></p>
+            {% else %}
+                <p><strong>Final Grade:</strong> {{ finals | round(2) }}</p>
+            {% endif %}
+
+            <hr>
+
+            {% if overall is not none %}
+                <p class="final"><strong>Overall Final Grade:</strong> {{ overall | round(2) }}</p>
+
+                <!-- pass/fail badge (75 is passing threshold) -->
+                {% if overall >= 75 %}
+                    <p><span class="badge pass">✔ Passed</span></p>
+                {% else %}
+                    <p><span class="badge fail">✖ Failed</span></p>
+                {% endif %}
+
+                <!-- show required final grade to reach targets -->
+                <div class="req">
+                    <p><strong>Needed Final to reach 75% overall:</strong>
+                      {% if req75 is not none %} {{ req75 | round(2) }} {% else %} N/A {% endif %}
+                    </p>
+                    <p><strong>Needed Final to reach 90% overall:</strong>
+                      {% if req90 is not none %} {{ req90 | round(2) }} {% else %} N/A {% endif %}
+                    </p>
+                </div>
+            {% else %}
+                <p class="muted">Overall grade cannot be computed because one or more terms were failed due to excessive absences.</p>
+            {% endif %}
+        </div>
+
+        <a href="{{ url_for('index') }}"><button type="button">Back to Calculator</button></a>
+    </div>
+</body>
+</html>
