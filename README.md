@@ -5,6 +5,7 @@ How to install:
 -first download the "pygrade.zip"
 -then go extract it and it will turn into an executable
 -after that just run it and itll open a browser for you to start using it
+-WINDOWS MIGHT MARK IT AS DANGEROUS!! just click more info then run it anyways
 
 How to use:
 -just type numbers on the boxes to start calculating
